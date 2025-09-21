@@ -1,0 +1,60 @@
+Build a **Student Data Management System** in **PHP with MySQL** that is lightweight and compatible with free hosting platforms like **InfinityFree** (limited resources).
+
+### Requirements:
+
+**User Roles:**
+
+1. **Teacher**
+
+   * **Registration page** with fields:
+
+     * Teacher ID (unique)
+     * Full name
+     * Grade levels handled (multi-select dropdown, stored as comma-separated text)
+     * Upload avatar (profile image, max 1MB, store in `/uploads/`)
+     * Password (hashed using `password_hash`)
+   * **Login page** using Teacher ID + password.
+   * After login → teacher must **select one grade level** to access. Switching grade levels requires logout and re-login.
+
+2. **Parent (future feature)**
+
+   * Login using **student ID number only**.
+   * Can view their child’s attendance, quiz records, and achievements.
+
+---
+
+**Main Dashboard (after teacher login):**
+Sidebar with modules:
+
+1. **Class Record**
+
+   * Display all students in the selected grade.
+   * Show total **Present / Absent** count (real-time using PHP auto-refresh or simple AJAX).
+   * Allow marking attendance.
+
+2. **Quiz Record**
+
+   * Show student list.
+   * Clicking a student opens their quiz history.
+   * Teacher can add new quiz titles (with subject + date).
+   * Enter scores for each student.
+
+3. **Achievements**
+
+   * Show list of students with achievement badges.
+   * Clicking a student shows their achievements.
+   * Teacher can add achievements (title + description).
+
+---
+
+**System Notes:**
+
+* Use **plain PHP + MySQLi** (avoid frameworks to keep InfinityFree compatible).
+* Use `config.php` for database connection and `setup.php` for database creation.
+* Store images in `/uploads/` and keep only file path in the database.
+* Limit database structure to essential tables only:
+
+  * `teachers`, `students`, `attendance`, `quizzes`, `quiz_scores`, `achievements`.
+* Use **Bootstrap (CDN)** for lightweight responsive design.
+* Avoid heavy libraries or large file uploads due to InfinityFree restrictions.
+* Prepare code so it can later be extended into a **REST API** for Android integration.
